@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahinshah Khan - Digital Card & CV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --border-color: #e2e8f0;
+            --accent-color: #073a4d;
+            
+            --email-btn-bg: #e0f2fe;
+            --email-btn-text: #0369a1;
+            --phone-btn-bg: #0f172a;
+            --phone-btn-text: #ffffff;
+            --linkedin-bg: #0077b5;
+            --linkedin-hover: #005e93;
+            
+            --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);
+            --shadow-lg: 0 20px 30px -10px rgba(0,0,0,0.08);
+        }
+
+        .dark-theme {
+            --bg-color: #0b0f17;
+            --card-bg: #151c28;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-color: #1e293b;
+            --accent-color: #38bdf8;
+            
+            --email-btn-bg: #1e293b;
+            --email-btn-text: #38bdf8;
+            --phone-btn-bg: #38bdf8;
+            --phone-btn-text: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .sketch-frame {
+            position: relative;
+            width: 100%;
+            max-width: 850px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .margin-tag {
+            position: absolute;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            font-style: italic;
+            opacity: 0.6;
+            letter-spacing: 0.5px;
+            pointer-events: none;
+        }
+        .margin-top-right { top: 15px; right: 20px; }
+        .margin-bottom-left { bottom: 15px; left: 20px; }
+        .margin-bottom-right { bottom: 15px; right: 20px; }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            z-index: 10;
+        }
+
+        .header-section {
+            text-align: left;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+        }
+
+        .reach-banner {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 12px;
+            padding: 14px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .reach-text {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .action-card {
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .card-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .card-details label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            opacity: 0.8;
+            margin-bottom: 2px;
+        }
+
+        .card-details span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .btn-action {
+            border: none;
+            padding: 9px 15px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            text-decoration: none;
+        }
+
+        .card-linkedin { background-color: #f0f7fc; border: 1px solid #bae6fd; color: #0c4a6e; }
+        .dark-theme .card-linkedin { background-color: #0c2a40; border-color: #0284c7; color: #e0f2fe; }
+        .icon-linkedin, .btn-linkedin { background-color: var(--linkedin-bg); color: white; }
+
+        .card-email { background-color: var(--email-btn-bg); border: 1px solid rgba(3, 105, 161, 0.2); color: var(--email-btn-text); }
+        .icon-email { background-color: rgba(3, 105, 161, 0.15); color: var(--email-btn-text); }
+        .btn-email { background-color: var(--email-btn-text); color: white; }
+
+        .card-phone { background-color: var(--phone-btn-bg); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--phone-btn-text); }
+        .icon-phone { background-color: rgba(255, 255, 255, 0.15); color: var(--phone-btn-text); }
+        .btn-phone { background-color: rgba(255, 255, 255, 0.2); color: var(--phone-btn-text); }
+
+        /* CV Content Styling */
+        .cv-divider {
+            border-top: 2px dashed var(--border-color);
+            margin: 30px 0;
+        }
+
+        .section-header {
+            border-bottom: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            padding-bottom: 4px;
+        }
+
+        .cv-section p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            color: var(--text-main);
+        }
+
+        .cv-section ul {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .cv-section li {
+            margin-bottom: 6px;
+            line-height: 1.5;
+            color: var(--text-sub);
+        }
+
+        .cv-section a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Direct Email Client Buttons */
+        .direct-email-card {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .btn-client {
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            color: white;
+        }
+
+        .btn-gmail { background-color: #ea4335; }
+        .btn-outlook { background-color: #0078d4; }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #0f172a;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 580px) {
+            .sketch-frame { padding: 30px 20px; }
+            .action-card { flex-direction: column; align-items: flex-start; }
+            .btn-action { width: 100%; justify-content: center; margin-top: 10px; }
+            .margin-tag { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sketch-frame">
+        <span class="margin-tag margin-top-right">Margin</span>
+        <span class="margin-tag margin-bottom-left">Margin</span>
+        <span class="margin-tag margin-bottom-right">Margin</span>
+
+        <button class="theme-toggle" id="themeToggle">
+            <i class="fa-solid fa-moon"></i>
+            <span id="themeText">Dark</span>
+        </button>
+
+        <!-- HEADER / CONTACT CARD -->
+        <div class="header-section">
+            <h1 class="main-title">Shahinshah Khan</h1>
+            <div class="subtitle">GIS & Remote Sensing Analyst | BS Geomatics</div>
+            <p class="tagline">Peshawar, Khyber Pakhtunkhwa, Pakistan</p>
+        </div>
+
+        <div class="reach-banner">
+            <div class="reach-text">
+                <i class="fa-solid fa-bolt"></i> One click to reach.
+            </div>
+        </div>
+
+        <div class="actions-grid">
+            <div class="action-card card-linkedin">
+                <div class="card-info">
+                    <div class="card-icon icon-linkedin">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                    <div class="card-details">
+                        <label>LinkedIn Profile</label>
+                        <span>linkedin.com/in/shahinshah-khan-96334529a</span>
+                    </div>
+                </div>
+                <a href="https://linkedin.com/in/shahinshah-khan-96334529a" target="_blank" class="btn-action btn-linkedin">
+                    Open Link <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+
+            <div class="action-card card-email">
+                <div class="card-info">
+                    <div class="card-icon icon-email">
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                    <div class="card-details">
+                        <label>Email Address</label>
+                        <span>khushalbaagh@gmail.com</span>
+                    </div>
+                </div>
+                <button class="btn-action btn-email" onclick="copyToClipboard('khushalbaagh@gmail.com', 'Email address')">
+                    <i class="fa-regular fa-copy"></i> Copy Mail
+                </button>
+            </div>
+
+            <div class="action-card card-phone">
+                <div class="card-info">
+                    <div class="card-icon icon-phone">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="card-details">
+                        <label>Phone Number</label>
+                        <span>+92 317 3724608</span>
+                    </div>
+                </div>
+                <button class="btn-action btn-phone" onclick="copyToClipboard('+92 317 3724608', 'Phone number')">
+                    <i class="fa-regular fa-copy"></i> Copy Phone No
+                </button>
+            </div>
+        </div>
+
+        <div class="cv-divider"></div>
+
+        <!-- FULL CV CONTENT -->
+        <div class="cv-section">
+            <div class="section-header">PROFILE</div>
+            <p>
+                BS Geomatics graduate specializing in satellite image processing, flood-risk modeling, and thematic cartography. Hands-on experience supporting forestry and land-use decisions with ArcGIS Pro, QGIS, and Google Earth Engine, including a HEC-RAS-based flash-flood vulnerability study. Looking to bring GIS and remote-sensing analysis to disaster management, hydrology, and climate-adaptation projects.
+            </p>
+
+            <div class="section-header">PROFESSIONAL EXPERIENCE</div>
+            <p><strong>GIS Intern</strong> | Forest Planning and Monitoring Circle, Peshawar (Jun 2024 – Jun 2025)</p>
+            <ul>
+                <li>Classified satellite imagery for Land Use/Land Cover mapping across 2,350 km² of forest area, visually validating classification results against high-resolution basemap imagery.</li>
+                <li>Built and maintained a departmental GIS database of 6+ layers (roads, settlements, rivers, LULC, DEM, & buffer), replacing scattered files with a structured, searchable system for field teams.</li>
+                <li>Produced 16+ thematic maps and cartographic layouts (location maps, slope, communication infrastructure etc.) in ArcGIS Pro/QGIS used directly in forestry project planning and reporting.</li>
+                <li>Managed multi-source geospatial datasets (satellite imagery, DEM, field survey data) across 2 concurrent forestry projects, ensuring data integrity across formats.</li>
+                <li>Authored technical reports and presented cartographic findings to senior foresters, directly supporting forestry project planning and decision-making.</li>
+            </ul>
+
+            <div class="section-header">BACHELOR THESIS</div>
+            <p><strong>Vulnerability Assessment of Flash Flood Using HEC-RAS: Barandu Drainage Basin, District Buner</strong></p>
+            <ul>
+                <li>Modeled flood inundation across 1,800+ km² of the Barandu basin in HEC-RAS, integrating a high-resolution DEM to delineate high-risk zones.</li>
+                <li>Ran pre- and post-event change-detection analysis in Google Earth Engine using satellite imagery.</li>
+                <li>Tracked land-cover shifts and damage extent across the basin following the Barandu flash flood event.</li>
+                <li>Delivered a flood-risk framework and thematic map set adopted as a reference for local disaster-preparedness planning.</li>
+            </ul>
+
+            <div class="section-header">RESEARCH PUBLICATION</div>
+            <p>
+                Comparative assessment of human and sectoral impacts of the 2010 and 2022 floods in Khyber Pakhtunkhwa, Pakistan: evidence from Jaccard similarity index and Noy‐lifeyears framework. 
+                <br>
+                <a href="https://doi.org/10.3389/fenvs.2026.1742357" target="_blank">https://doi.org/10.3389/fenvs.2026.1742357</a>
+            </p>
+
+            <div class="section-header">WORKSHOP</div>
+            <p><strong>Role of Satellite Land Monitoring System (SLMS) in Forest Carbon Stock Assessment</strong></p>
+            <p>SUPARCO Regional Office Peshawar | 5-day hands-on | May 2025</p>
+            <ul>
+                <li>Trained on satellite-based land monitoring methods for forest carbon stock assessment, delivered by Pakistan's national space agency.</li>
+            </ul>
+
+            <div class="section-header">EDUCATION</div>
+            <p><strong>BS Geomatics (Honours)</strong> | University of Peshawar (2022 – 2026)</p>
+            <p><em>Relevant coursework:</em> Geographic Information Systems, Remote Sensing, Photogrammetry, Cartography, Spatial Databases, GPS, Surveying.</p>
+            <p><strong>F.Sc (Pre-Medical)</strong> | Board of Intermediate & Secondary Education, Peshawar (2021 – 2022)</p>
+
+            <div class="section-header">AWARDS</div>
+            <ul>
+                <li>Prime Minister's Youth Laptop Scheme (PMYLS) — merit-based award, Higher Education Commission (HEC) — Government of Pakistan (Awarded 2025, received Feb 2026)</li>
+            </ul>
+
+            <div class="section-header">WEBINARS & CERTIFICATIONS</div>
+            <p><strong>GIS Webinar Series</strong> — SwastikEdustart, Geospatial Training Institute (ITT Council, New Delhi)</p>
+            <ul>
+                <li>Python in GIS (May 2026)</li>
+                <li>Career Opportunities in GIS (Jun 2026)</li>
+                <li>LULC Prediction (May 2026)</li>
+                <li>Air Quality Prediction using Machine Learning (Apr 2026)</li>
+                <li>Introduction to Geospatial Data Science (Jul 2026)</li>
+            </ul>
+            <ul>
+                <li>Basic GIS & Remote Sensing Training — FLOWER (Female Leadership on Water, Environment and Research), Jun 2026</li>
+                <li>Complete Beginners Course to Master Microsoft Excel — Eduonix Learning Solutions, Jul 2024</li>
+                <li>Quick and Easy Guide to Microsoft Word — Eduonix Learning Solutions, Jul 2024</li>
+                <li>Introduction to Design Thinking — Great Learning Academy, Jul 2024</li>
+            </ul>
+
+            <div class="section-header">TECHNICAL SKILLS</div>
+            <p><strong>Software:</strong> ArcGIS Pro, ArcMap, QGIS, Google Earth Engine, ERDAS Imagine, Google Earth Pro</p>
+            <p><strong>Spatial Analysis:</strong> Vector & raster analysis, DEM analysis, image classification, change detection, watershed delineation</p>
+            <p><strong>Programming:</strong> Google Earth Engine (JavaScript), Python (basic)</p>
+            <p><strong>Other:</strong> Microsoft Office (Word, Excel, PowerPoint)</p>
+
+            <div class="section-header">LANGUAGES</div>
+            <p>English (Intermediate) • Urdu (Fluent) • Pashto (Native)</p>
+
+            <div class="section-header">RESEARCH INTERESTS</div>
+            <p>GIS • Remote Sensing • Spatial Data Analysis • Climate Change • Hydrology • Disaster Risk Management • Environmental Monitoring • Urban & Regional Planning</p>
+
+            <!-- DIRECT CONTACT OPTIONS -->
+            <div class="direct-email-card">
+                <h3>Direct Contact Options</h3>
+                <p>Connect directly with me via your preferred email service:</p>
+                <div class="btn-group">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=khushalbaagh@gmail.com" target="_blank" class="btn-client btn-gmail">
+                        Open in Gmail
+                    </a>
+                    <a href="https://outlook.live.com/mail/0/deeplink/compose?to=khushalbaagh@gmail.com" target="_blank" class="btn-client btn-outlook">
+                        Open in Outlook
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check" style="color: #22c55e;"></i>
+        <span id="toastMsg">Copied to clipboard!</span>
+    </div>
+
+    <script>
+        function copyToClipboard(text, type) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(`${type} copied to clipboard!`);
+            }).catch(err => {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+                showToast(`${type} copied to clipboard!`);
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = message;
+            
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeText = document.getElementById('themeText');
+        const themeIcon = themeToggleBtn.querySelector('i');
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            
+            themeText.textContent = isDark ? 'Light' : 'Dark';
+            themeIcon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+    </script>
+</body>
+</html>
